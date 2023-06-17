@@ -6,7 +6,7 @@ import { Header } from "@components/Header";
 export function Home(){
     return(
         <S.Container>
-            <Header type="PERFIL"/>
+            <Header/>
             {/* <S.Text>
                 OLÁ MUNDO
             </S.Text> */}

@@ -33,24 +33,25 @@ export const Container = styled(TouchableOpacity) <Props>`
   min-height: 50px;
   border-radius: 6px;
   justify-content: center;
- 
-  padding: 16px 24px 16px 24px;
+  padding: 0 24px 16px 24px;
   flex-direction: row;
 `;
 
 export const TextButton = styled(Text)<Props>`
-   color: ${({ type, theme }) => type === 'PRIMARY' ? theme.COLORS.GREEN_LIGHT
-    : type === 'SECONDARY' ? theme.COLORS.GRAY_200
+   color: ${({ type, theme }) => type === 'PRIMARY' ? theme.COLORS.WHITE
+    : type === 'SECONDARY' ? theme.COLORS.GRAY_100
       : theme.COLORS.RED_DARK};
    font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
    font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
+   margin-top: 16px;
 `;
 
 export const IconButton = styled(AntDesign).attrs<Props>(({ theme, type })=> ({
    size: 18,
-   color: type === 'PRIMARY' ? theme.COLORS.GREEN_LIGHT
-   : type === 'SECONDARY' ? theme.COLORS.GRAY_200
+   color: type === 'PRIMARY' ? theme.COLORS.WHITE
+   : type === 'SECONDARY' ? theme.COLORS.GRAY_100
      : theme.COLORS.RED_DARK
 }))`
  margin-right: 10px;
+ margin-top: 17px;
 `;
