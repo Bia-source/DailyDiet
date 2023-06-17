@@ -23,7 +23,9 @@ export const PerfilImage = styled.Image`
      width:40px;
      height: 40px;
      border-radius: 20px;
-     border: 2px solid ${({ theme }) => theme.COLORS.GRAY_200};  
+     border: 2px;
+     border-style: solid;
+     border-color: ${({ theme }) => theme.COLORS.GRAY_200};
 `;
 
 
