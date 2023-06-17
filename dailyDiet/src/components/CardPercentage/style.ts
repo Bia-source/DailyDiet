@@ -1,8 +1,8 @@
 import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
-import { ArrowUpRight } from "phosphor-react-native";
-
+import { Feather } from "@expo/vector-icons"
 export type PercentageType = 'POSITIVE' | 'NEGATIVE';
+
 export type PercentageStyleProps = {
     type: PercentageType;
 }
@@ -17,11 +17,12 @@ export const Container = styled(TouchableOpacity)<PercentageStyleProps>`
    background-color: ${({ theme, type })=> type === 'POSITIVE' && theme.COLORS.GREEN_LIGHT || type === 'NEGATIVE' && theme.COLORS.RED_LIGHT};
 `;
 
-export const Icon = styled(ArrowUpRight).attrs<PercentageStyleProps>(({ theme, type })=> ({
-    width: 24,
-    height: 24,
+export const Icon = styled(Feather).attrs<PercentageStyleProps>(({ theme, type })=> ({
+    size: 24,
     color: type === 'NEGATIVE' && theme.COLORS.RED_DARK || type === 'POSITIVE' && theme.COLORS.GREEN_DARK
 }))`
-   margin-left: 98%;
+    width: 24px;
+    height: 24px; 
+    margin-left: 98%;
 `;
 
