@@ -6,10 +6,9 @@ import { Separator } from "@components/Separator ";
 
 type CardPercentageProps = TouchableOpacityProps & {
     type: S.PercentageType;
-    nameIcon: string
 }
 
-export function CardPercentage({ nameIcon, type = 'POSITIVE', ...rest }: CardPercentageProps) {
+export function CardPercentage({ type = 'POSITIVE', ...rest }: CardPercentageProps) {
     return (
         <S.Container
             type={type}
