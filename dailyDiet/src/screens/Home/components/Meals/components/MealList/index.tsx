@@ -5,10 +5,10 @@ type MealListProps = {
     date: string;
     time: string;
     title: string;
-    type?: string;
+    status: S.MealStatusType;
 }
 
-export function MealList({ date, time, title, type }: MealListProps) {
+export function MealList({ date, time, title, status }: MealListProps) {
     return (
         <S.Container>
 
@@ -23,7 +23,7 @@ export function MealList({ date, time, title, type }: MealListProps) {
                     </S.Title>
                 </S.teste>
 
-                <S.Status type="NEGATIVE"/>
+                <S.Status type={status}/>
             </S.Meal>
         </S.Container>
     )

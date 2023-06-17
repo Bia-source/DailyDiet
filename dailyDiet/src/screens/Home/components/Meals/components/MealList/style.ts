@@ -2,8 +2,9 @@ import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { } from "@expo/vector-icons";
 
+export type MealStatusType = 'POSITIVE' | 'NEGATIVE'
 type MealsListProps = {
-    type: string;
+    type: MealStatusType;
 }
 
 export const Container = styled.View`
@@ -51,6 +52,6 @@ export const Status = styled.View<MealsListProps>`
   width:14px;
   height:14px;
   border-radius:20px;
-  background-color: ${({ theme, type }) => type === 'NEGATIVE' && theme.COLORS.GREEN_MID || type === 'NEGATIVE' && theme.COLORS.RED_LIGHT};
+  background-color: ${({ theme, type }) => type === 'POSITIVE' && theme.COLORS.GREEN_MID || type === 'NEGATIVE' && theme.COLORS.RED_LIGHT};
   
 `
