@@ -7,3 +7,7 @@ export type SeparatorProps = {
 export const Container = styled.View<SeparatorProps>`
   margin-top: ${({ distance })=> distance}px;
 `
+
+export const ContainerSeparatorVertical = styled.View<SeparatorProps>`
+  margin-right: ${({ distance })=> distance}px;
+`

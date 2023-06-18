@@ -4,7 +4,7 @@ import { Feather } from "@expo/vector-icons"
 
 export type PercentageType = 'POSITIVE' | 'NEGATIVE';
 export type PercentageStyleProps = {
-    type: PercentageType;
+    type?: PercentageType;
 }
 
 export const Container = styled(TouchableOpacity)<PercentageStyleProps>`

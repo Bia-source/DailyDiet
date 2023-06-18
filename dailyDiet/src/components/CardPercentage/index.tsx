@@ -5,15 +5,18 @@ import { Separator } from "@components/Separator ";
 
 type CardPercentageProps = TouchableOpacityProps & {
     type: S.PercentageType;
+    showIconBack?: boolean;
 }
 
-export function CardPercentage({ type = 'POSITIVE', ...rest }: CardPercentageProps) {
+export function CardPercentage({ showIconBack = false, type = 'POSITIVE', ...rest }: CardPercentageProps) {
     return (
         <S.Container
             type={type}
             {...rest}
         >
-            <S.Icon name="arrow-up-right" type={type}/>
+            { showIconBack && 
+             <S.Icon name="arrow-up-right" type={type}/>
+            }
             <Percentage />
             <Separator distance={10}/>
         </S.Container>
