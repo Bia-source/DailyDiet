@@ -56,9 +56,8 @@ export function Meals() {
             <SectionList
                 sections={datas}
                 keyExtractor={item => item.title}
-                renderItem={({ item, index }) => (
+                renderItem={({ item }) => (
                     <MealList
-                        date={datas[index].date}
                         time={item.time}
                         title={item.title}
                         status={item.status}
@@ -72,6 +71,8 @@ export function Meals() {
                         </S.Date>
                     </>
                 )}
+                showsVerticalScrollIndicator={false}
+                
             />
 
         </S.Container>

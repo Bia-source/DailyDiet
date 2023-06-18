@@ -1,17 +1,14 @@
 import * as S from "./style";
-import { Text } from "react-native";
 
 type MealListProps = {
-    date: string;
     time: string;
     title: string;
     status: S.MealStatusType;
 }
 
-export function MealList({ date, time, title, status }: MealListProps) {
+export function MealList({ time, title, status }: MealListProps) {
     return (
         <S.Container>
-
             <S.Meal>
                 <S.teste>
                     <S.Time>
