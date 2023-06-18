@@ -1,8 +1,8 @@
 import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { Feather } from "@expo/vector-icons"
-export type PercentageType = 'POSITIVE' | 'NEGATIVE';
 
+export type PercentageType = 'POSITIVE' | 'NEGATIVE';
 export type PercentageStyleProps = {
     type: PercentageType;
 }

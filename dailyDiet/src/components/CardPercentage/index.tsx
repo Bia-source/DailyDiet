@@ -1,7 +1,6 @@
 import { Percentage } from "@components/Percentage";
 import * as S from "./style";
 import { TouchableOpacityProps } from "react-native";
-import { ArrowUpRight } from "phosphor-react-native";
 import { Separator } from "@components/Separator ";
 
 type CardPercentageProps = TouchableOpacityProps & {
