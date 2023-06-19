@@ -29,7 +29,7 @@ export const Container = styled(TouchableOpacity) <Props>`
   max-width: ${({ size }) =>
     size === 'SM' ? 47
       : size === 'MD' ? 65
-        : size === 'LG' ? 100 : 100}px;;
+        : size === 'LG' ? 100 : 100}%;
 
   max-height: 50px;
   min-height: 50px;
@@ -40,7 +40,7 @@ export const Container = styled(TouchableOpacity) <Props>`
   : null
 };
   justify-content: center;
-  padding: 0 24px 16px 24px;
+  padding: 0 20px 12px 20px;
   flex-direction: row;
   align-items: center;
 `;
@@ -56,7 +56,7 @@ export const TextButton = styled(Text)<Props>`
       : theme.COLORS.GRAY_100};
    font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
    font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
-   margin-top: 16px;
+   margin-top: 17px;
 `;
 
 export const IconButton = styled(AntDesign).attrs<Props>(({ theme, type })=> ({

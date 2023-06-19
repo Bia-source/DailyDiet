@@ -3,8 +3,11 @@ import * as S from "./style";
 import { useNavigation } from "@react-navigation/native";
 import { CardPercentage } from "@components/CardPercentage";
 import { Separator, SeparatorVertical } from "@components/Separator ";
+import { useState } from "react";
+import { PercentageType } from "@components/CardPercentage/style";
 
 export function Statics() {
+    const [status, setStatus] = useState<PercentageType>('POSITIVE');
     const navigator = useNavigation();
 
     function goBack() {
@@ -12,10 +15,10 @@ export function Statics() {
     }
 
     return (
-        <S.HeaderContainer color="NEGATIVE">
+        <S.HeaderContainer color="POSITIVE">
             <S.Container>
-                <HeaderStatics onPress={goBack} type="NEGATIVE" />
-                <CardPercentage type="NEGATIVE" />
+                <HeaderStatics onPress={goBack} type={status} />
+                <CardPercentage type={status} />
 
             </S.Container>
 

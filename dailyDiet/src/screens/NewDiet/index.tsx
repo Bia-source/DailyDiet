@@ -3,9 +3,16 @@ import * as S from "./style";
 import { Separator, SeparatorVertical } from "@components/Separator ";
 import { Button } from "@components/Button";
 import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 export function NewDiet() {
     const [option, setOption] = useState('');
+
+    const navigator = useNavigation();
+
+    function addSuccess(){
+      navigator.navigate('success');
+    }
 
     const isActive = false;
     const isActive2 = true;
@@ -79,7 +86,7 @@ export function NewDiet() {
                  type="PRIMARY"
                  size="LG"
                  text="Cadastrar refeição"
-                 onPress={()=> {}}
+                 onPress={addSuccess}
                />
             </S.Container2>
         </>
