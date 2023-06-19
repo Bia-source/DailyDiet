@@ -7,12 +7,11 @@ type StaticsStyleProps = {
 
 export const Container = styled(SafeAreaView)`
   padding: 24px;
-  background-color: ${({ theme })=> theme.COLORS.GREEN_LIGHT};
 `;
 
-export const HeaderContainer = styled.View`
+export const HeaderContainer = styled.View<StaticsStyleProps>`
     flex: 1;
-    background-color: ${({ theme })=> theme.COLORS.GREEN_LIGHT};
+    background-color: ${({ theme, color })=> color === 'POSITIVE' && theme.COLORS.GREEN_LIGHT || color === 'NEGATIVE' && theme.COLORS.RED_LIGHT};
 `
 
 export const GeneralStatistics = styled(SafeAreaView)`

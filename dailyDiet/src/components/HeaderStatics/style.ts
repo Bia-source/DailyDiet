@@ -16,12 +16,3 @@ export const Container = styled.View`
 export const ButtonHeader = styled(TouchableOpacity)`
    flex-direction: row;
 `
-
-export const IconBack = styled(MaterialIcons).attrs<IconBackProps>(({ theme, type })=> ({
-   size: 24,
-   color: type === 'NEGATIVE' && theme.COLORS.RED_DARK || 
-   type === 'POSITIVE' && theme.COLORS.GREEN_DARK || 
-   type === 'NEUTRAL' && theme.COLORS.GRAY_100
-}))`
-   
-`

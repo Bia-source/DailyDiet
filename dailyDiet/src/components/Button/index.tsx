@@ -7,13 +7,16 @@ type ButtonComponentProps = TouchableOpacityProps & {
     size: S.ButtonSizeStyleProps;
     icon?: keyof typeof AntDesign.glyphMap;
     text: string;
+    iconPerson?: any;
+    isActive?: boolean;
 }
 
-export function Button({ type, size, icon, text, ...rest }: ButtonComponentProps) {
+export function Button({ isActive=true, type, size, icon, text, iconPerson, ...rest }: ButtonComponentProps) {
     console.log(type);
     return (
         <S.Container
             {...rest}
+            isActive={isActive}
             size={size}
             type={type}
         >
@@ -22,6 +25,11 @@ export function Button({ type, size, icon, text, ...rest }: ButtonComponentProps
                     name={icon}
                     type={type}
                 />
+            }
+            { iconPerson &&
+              <S.DivIconPerson>
+                {iconPerson}
+              </S.DivIconPerson>
             }
             <S.TextButton type={type}>
                 {text}

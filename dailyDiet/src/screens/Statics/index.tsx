@@ -12,10 +12,10 @@ export function Statics() {
     }
 
     return (
-        <S.HeaderContainer>
+        <S.HeaderContainer color="NEGATIVE">
             <S.Container>
-                <HeaderStatics onPress={goBack} type="POSITIVE" />
-                <CardPercentage type="POSITIVE" />
+                <HeaderStatics onPress={goBack} type="NEGATIVE" />
+                <CardPercentage type="NEGATIVE" />
 
             </S.Container>
 
@@ -65,29 +65,6 @@ export function Statics() {
 
                     
                 </S.Div>
-
-                {/* <S.Div>
-                    <S.CardsSmall color="GREEN">
-                        <S.TitleCard>
-                            99
-                        </S.TitleCard>
-                        <S.SubTitleCard>
-                            refeições dentro da dieta
-                        </S.SubTitleCard>
-                    </S.CardsSmall>
-
-                    <SeparratorVertical distance={10} />
-
-                    {/* <S.CardsSmall color="RED">
-                        <S.TitleCard>
-                            10
-                        </S.TitleCard>
-                        <S.SubTitleCard>
-                            refeições fora da dieta
-                        </S.SubTitleCard>
-                    </S.CardsSmall> 
-                </S.Div> */}
-
             </S.GeneralStatistics>
         </S.HeaderContainer>
 

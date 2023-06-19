@@ -4,6 +4,7 @@ import { Separator } from "@components/Separator ";
 import { MealList } from "./components/MealList";
 import { SectionList, Text } from "react-native";
 import { MealStatusType } from "./components/MealList/style";
+import { useNavigation } from "@react-navigation/native";
 
 type mealData = {
     time: string;
@@ -16,6 +17,7 @@ type mealProps = {
 }
 
 export function Meals() {
+    const navigator = useNavigation();
     const datas: mealProps[] = [
         {
             date: "12.08.22",
@@ -39,6 +41,11 @@ export function Meals() {
             ]
         }
     ]
+
+    function goNewDiet(){
+       navigator.navigate('newdiet');
+    }
+
     return (
         <S.Container>
             <S.Title>
@@ -50,10 +57,11 @@ export function Meals() {
                 size="LG"
                 text="Nova refeicão"
                 icon="plus"
-                onPress={() => { }}
+                onPress={goNewDiet}
             />
             <Separator distance={10} />
             <SectionList
+                nestedScrollEnabled
                 sections={datas}
                 keyExtractor={item => item.title}
                 renderItem={({ item }) => (
