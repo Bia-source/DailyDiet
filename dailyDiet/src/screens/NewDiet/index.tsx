@@ -4,18 +4,24 @@ import { Separator, SeparatorVertical } from "@components/Separator ";
 import { Button } from "@components/Button";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { maskDate, maskHours } from "@utils/masks";
 
 export function NewDiet() {
     const [option, setOption] = useState('');
-
     const navigator = useNavigation();
+    const [date, setDate] = useState('');
+    const [hours, setHours] = useState('');
 
-    function addSuccess(){
-      navigator.navigate('success');
+    const maskedDate = maskDate(date, setDate);
+    const maskedHours = maskHours(hours, setHours);
+
+
+    function addSuccess() {
+        let status = option === 'Yes' ? true : false;
+        navigator.navigate('success', { isDiet: status });
     }
 
-    const isActive = false;
-    const isActive2 = true;
+
     return (
         <>
             <S.Container>
@@ -31,13 +37,21 @@ export function NewDiet() {
                 <S.TitleInput>
                     Nome
                 </S.TitleInput>
-                <S.Input multiline typeInput="NAME" />
+                <S.Input
+                    multiline
+                    onSubmitEditing={() => { }}
+                    returnKeyType="default"
+                    typeInput="NAME" />
                 <Separator distance={20} />
 
                 <S.TitleInput>
                     Descrição
                 </S.TitleInput>
-                <S.Input multiline typeInput="DESCRIPTION" />
+                <S.Input
+                    multiline
+                    onSubmitEditing={() => { }}
+                    returnKeyType="default"
+                    typeInput="DESCRIPTION" />
 
                 <Separator distance={20} />
                 <S.DivDate>
@@ -45,7 +59,14 @@ export function NewDiet() {
                         <S.TitleInput>
                             Data
                         </S.TitleInput>
-                        <S.Input typeInput="DATE" />
+
+                        <S.Input
+                            onSubmitEditing={() => { }}
+                            returnKeyType="default"
+                            typeInput="DATE"
+                            placeholderTextColor={"#ffffff"}
+                            {...maskedDate}
+                        />
                     </S.DivColumn>
 
                     <SeparatorVertical distance={20} />
@@ -53,7 +74,12 @@ export function NewDiet() {
                         <S.TitleInput>
                             Hora
                         </S.TitleInput>
-                        <S.Input typeInput="DATE" />
+                        <S.Input
+                            onSubmitEditing={() => { }}
+                            returnKeyType="default"
+                            typeInput="DATE" 
+                            {...maskedHours}
+                        />
                     </S.DivColumn>
                 </S.DivDate>
 
@@ -81,13 +107,14 @@ export function NewDiet() {
                         iconPerson={<S.Status />}
                     />
                 </S.DivDate>
-               <Separator distance={160}/>
-               <Button
-                 type="PRIMARY"
-                 size="LG"
-                 text="Cadastrar refeição"
-                 onPress={addSuccess}
-               />
+                <Separator distance={160} />
+                <Button
+                    type="PRIMARY"
+                    size="LG"
+                    text="Cadastrar refeição"
+                    onPress={addSuccess}
+
+                />
             </S.Container2>
         </>
     )
