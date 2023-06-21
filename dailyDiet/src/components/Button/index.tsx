@@ -12,7 +12,6 @@ type ButtonComponentProps = TouchableOpacityProps & {
 }
 
 export function Button({ isActive=true, type, size, icon, text, iconPerson, ...rest }: ButtonComponentProps) {
-    console.log(type);
     return (
         <S.Container
             {...rest}

@@ -4,7 +4,7 @@ export function Percentage(){
     return(
         <S.Container>
             <S.Title>
-               90,86%
+               30,21%
             </S.Title>
   
             <S.SubTitle>

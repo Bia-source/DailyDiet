@@ -26,7 +26,7 @@ export function NewDiet() {
         <>
             <S.Container>
                 <S.Div>
-                    <ButtonBack type="NEUTRAL" />
+                    <ButtonBack type="NEUTRAL"/>
                     <S.Title>
                         Nova refeição
                     </S.Title>

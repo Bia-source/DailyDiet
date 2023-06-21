@@ -10,7 +10,7 @@ import { useState } from "react";
 
 export function Home() {
     const navigator = useNavigation();
-    const [status, setStatus] = useState<PercentageType>('POSITIVE');
+    const [status, setStatus] = useState<PercentageType>('NEGATIVE');
 
     function goStatics(){
        navigator.navigate("statics");

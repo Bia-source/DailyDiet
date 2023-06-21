@@ -1,10 +1,10 @@
 import { Separator } from '@components/Separator ';
 import * as S from './style';
-import imagemSuccess from "@assets/Illustration.png";
+import iconGirl from "@assets/girl.png";
+import iconBoy from "@assets/boy.png";
 import { Button } from '@components/Button';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Image } from 'react-native';
-import { useEffect } from 'react';
 
 type RouteParams = {
     isDiet: boolean;
@@ -14,13 +14,11 @@ export function Success() {
     const navigator = useNavigation();
     const route = useRoute();
     const { isDiet } = route.params as RouteParams;
-    useEffect(()=>{
-        console.log(isDiet)
-    }, [])
+
     function backHome() {
         navigator.navigate('home');
     }
-
+    
     return (
         <S.Container>
             {isDiet ?
@@ -53,9 +51,15 @@ export function Success() {
 
             <Separator distance={50} />
 
-            <Image
-                source={imagemSuccess}
-            />
+            {isDiet ?
+                <Image
+                    source={iconGirl}
+                />
+                :
+                <Image
+                    source={iconBoy}
+                />
+            }
             <Separator distance={30} />
             <Button
                 type='PRIMARY'
