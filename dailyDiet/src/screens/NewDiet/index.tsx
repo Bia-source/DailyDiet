@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { maskDate, maskHours } from "@utils/masks";
 import { IMeal } from "@utils/interface";
+import { newMeal } from "@storage/MealStorage/newMeal";
 
 export function NewDiet() {
     const [option, setOption] = useState('');
@@ -16,14 +17,13 @@ export function NewDiet() {
     const [nameMeal, setNameMeal] = useState('');
     const [descriptionMeal, setDescriptionMeal] = useState('');
     const [isDietMeal, setIsDietMeal] = useState<boolean>(true);
-    const [meal, setMeal] = useState<IMeal>();
 
     const maskedDate = maskDate(date, setDate);
     const maskedHours = maskHours(hours, setHours);
 
-    function registerMeal() {
-        setMeal({
-            name: nameMeal,
+    async function regiterStorage() {
+        await newMeal({
+            name: nameMeal, 
             description: descriptionMeal,
             date: date,
             hour: hours,
@@ -75,7 +75,7 @@ export function NewDiet() {
                         </S.TitleInput>
 
                         <S.Input
-                            onSubmitEditing={() => {}}
+                            onSubmitEditing={() => { }}
                             returnKeyType="default"
                             typeInput="DATE"
                             placeholderTextColor={"#ffffff"}
@@ -89,7 +89,7 @@ export function NewDiet() {
                             Hora
                         </S.TitleInput>
                         <S.Input
-                            onSubmitEditing={() => {}}
+                            onSubmitEditing={() => { }}
                             returnKeyType="default"
                             typeInput="DATE"
                             {...maskedHours}
@@ -132,8 +132,7 @@ export function NewDiet() {
                     type="PRIMARY"
                     size="LG"
                     text="Cadastrar refeição"
-                    onPress={registerMeal}
-
+                    onPress={() => {regiterStorage()}}
                 />
             </S.Container2>
         </>

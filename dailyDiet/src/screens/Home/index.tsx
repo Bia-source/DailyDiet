@@ -4,13 +4,19 @@ import { Header } from "@components/Header";
 import { CardPercentage } from "@components/CardPercentage";
 import { Separator } from "@components/Separator ";
 import { Meals } from "./components/Meals";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { PercentageType } from "@components/CardPercentage/style";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { getAllMeals } from "@storage/MealStorage/getAllMeals";
 
 export function Home() {
     const navigator = useNavigation();
     const [status, setStatus] = useState<PercentageType>('NEGATIVE');
+
+    useFocusEffect(useCallback(()=> {
+         getAllMeals();
+    }, []))
+
 
     function goStatics(){
        navigator.navigate("statics");
