@@ -2,9 +2,10 @@ import { ButtonBack } from "@components/ButtonBack";
 import * as S from "./style";
 import { Separator, SeparatorVertical } from "@components/Separator ";
 import { Button } from "@components/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { maskDate, maskHours } from "@utils/masks";
+import { IMeal } from "@utils/interface";
 
 export function NewDiet() {
     const [option, setOption] = useState('');
@@ -12,21 +13,30 @@ export function NewDiet() {
     const [date, setDate] = useState('');
     const [hours, setHours] = useState('');
 
+    const [nameMeal, setNameMeal] = useState('');
+    const [descriptionMeal, setDescriptionMeal] = useState('');
+    const [isDietMeal, setIsDietMeal] = useState<boolean>(true);
+    const [meal, setMeal] = useState<IMeal>();
+
     const maskedDate = maskDate(date, setDate);
     const maskedHours = maskHours(hours, setHours);
 
-
-    function addFeedback() {
-        let status = option === 'Yes' ? true : false;
-        navigator.navigate('feedback', { isDiet: status });
+    function registerMeal() {
+        setMeal({
+            name: nameMeal,
+            description: descriptionMeal,
+            date: date,
+            hour: hours,
+            isDiet: isDietMeal
+        });
+        navigator.navigate('feedback', { isDiet: isDietMeal });
     }
-
 
     return (
         <>
             <S.Container>
                 <S.Div>
-                    <ButtonBack type="NEUTRAL"/>
+                    <ButtonBack type="NEUTRAL" />
                     <S.Title>
                         Nova refeição
                     </S.Title>
@@ -39,9 +49,11 @@ export function NewDiet() {
                 </S.TitleInput>
                 <S.Input
                     multiline
-                    onSubmitEditing={() => { }}
+                    onSubmitEditing={() => { setNameMeal }}
                     returnKeyType="default"
-                    typeInput="NAME" />
+                    typeInput="NAME"
+                    onChangeText={setNameMeal}
+                />
                 <Separator distance={20} />
 
                 <S.TitleInput>
@@ -49,9 +61,11 @@ export function NewDiet() {
                 </S.TitleInput>
                 <S.Input
                     multiline
-                    onSubmitEditing={() => { }}
+                    onSubmitEditing={() => { setDescriptionMeal }}
                     returnKeyType="default"
-                    typeInput="DESCRIPTION" />
+                    typeInput="DESCRIPTION"
+                    onChangeText={setDescriptionMeal}
+                />
 
                 <Separator distance={20} />
                 <S.DivDate>
@@ -61,7 +75,7 @@ export function NewDiet() {
                         </S.TitleInput>
 
                         <S.Input
-                            onSubmitEditing={() => { }}
+                            onSubmitEditing={() => {}}
                             returnKeyType="default"
                             typeInput="DATE"
                             placeholderTextColor={"#ffffff"}
@@ -75,9 +89,9 @@ export function NewDiet() {
                             Hora
                         </S.TitleInput>
                         <S.Input
-                            onSubmitEditing={() => { }}
+                            onSubmitEditing={() => {}}
                             returnKeyType="default"
-                            typeInput="DATE" 
+                            typeInput="DATE"
                             {...maskedHours}
                         />
                     </S.DivColumn>
@@ -94,7 +108,10 @@ export function NewDiet() {
                         type={(option === 'Yes') ? "GREEN-DARK" : "SECONDARY"}
                         size="SM"
                         text="Sim"
-                        onPress={() => { setOption('Yes') }}
+                        onPress={() => {
+                            setOption('Yes')
+                            setIsDietMeal(true)
+                        }}
                         iconPerson={<S.Status typeButtonNewDiet />}
                     />
                     <SeparatorVertical distance={20} />
@@ -103,7 +120,10 @@ export function NewDiet() {
                         type={option === 'No' ? "RED-DARK" : "SECONDARY"}
                         size="SM"
                         text="Não"
-                        onPress={() => { setOption('No') }}
+                        onPress={() => {
+                            setOption('No')
+                            setIsDietMeal(false)
+                        }}
                         iconPerson={<S.Status />}
                     />
                 </S.DivDate>
@@ -112,7 +132,7 @@ export function NewDiet() {
                     type="PRIMARY"
                     size="LG"
                     text="Cadastrar refeição"
-                    onPress={addFeedback}
+                    onPress={registerMeal}
 
                 />
             </S.Container2>
