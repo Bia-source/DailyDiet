@@ -4,7 +4,7 @@ export declare global {
             home: undefined;
             statics: undefined;
             newdiet: undefined;
-            success: {
+            feedback: {
                 isDiet: boolean
             };
         }

@@ -16,9 +16,9 @@ export function NewDiet() {
     const maskedHours = maskHours(hours, setHours);
 
 
-    function addSuccess() {
+    function addFeedback() {
         let status = option === 'Yes' ? true : false;
-        navigator.navigate('success', { isDiet: status });
+        navigator.navigate('feedback', { isDiet: status });
     }
 
 
@@ -112,7 +112,7 @@ export function NewDiet() {
                     type="PRIMARY"
                     size="LG"
                     text="Cadastrar refeição"
-                    onPress={addSuccess}
+                    onPress={addFeedback}
 
                 />
             </S.Container2>

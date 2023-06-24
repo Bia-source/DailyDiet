@@ -10,7 +10,7 @@ type RouteParams = {
     isDiet: boolean;
 }
 
-export function Success() {
+export function Feedback() {
     const navigator = useNavigation();
     const route = useRoute();
     const { isDiet } = route.params as RouteParams;

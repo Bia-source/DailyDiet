@@ -1,7 +1,7 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 
-type SuccessStyleProps = {
+type FeedbackStyleProps = {
     isDiet?: boolean;
 }
 
@@ -12,7 +12,7 @@ export const Container = styled(SafeAreaView)`
   align-items: center;
 `
 
-export const Title = styled.Text<SuccessStyleProps>`
+export const Title = styled.Text<FeedbackStyleProps>`
   font-size: ${({ theme })=> theme.FONT_SIZE.XLG}px;
   font-family: ${({ theme })=> theme.FONT_FAMILY.BOLD};
   color: ${({ theme, isDiet })=> isDiet ? theme.COLORS.GREEN_DARK : theme.COLORS.RED_DARK};
@@ -22,7 +22,7 @@ export const SubTitle = styled.Text`
   font-size: ${({ theme })=> theme.FONT_SIZE.MD}px;
   font-family: ${({ theme })=> theme.FONT_FAMILY.REGULAR};
   color: ${({ theme })=> theme.COLORS.GRAY_100};
-  max-width: 75%;
+  max-width: 85%;
   text-align: center;
 `;
 
