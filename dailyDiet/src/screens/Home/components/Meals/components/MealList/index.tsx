@@ -1,9 +1,11 @@
+import { useFocusEffect } from "@react-navigation/native";
+import { useCallback } from "react";
 import * as S from "./style";
 
 type MealListProps = {
     time: string;
     title: string;
-    status: S.MealStatusType;
+    status: boolean;
 }
 
 export function MealList({ time, title, status }: MealListProps) {
@@ -20,7 +22,7 @@ export function MealList({ time, title, status }: MealListProps) {
                     </S.Title>
                 </S.teste>
 
-                <S.Status type={status}/>
+                <S.Status type={status} />
             </S.Meal>
         </S.Container>
     )

@@ -1,46 +1,44 @@
 import { Button } from "@components/Button";
-import * as S from "./style";
 import { Separator } from "@components/Separator ";
+import { SectionList } from "react-native";
 import { MealList } from "./components/MealList";
-import { SectionList, Text } from "react-native";
-import { MealStatusType } from "./components/MealList/style";
-import { useNavigation } from "@react-navigation/native";
+import * as S from "./style";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { getAllMeals } from "@storage/MealStorage/getAllMeals";
+import { IMeal } from "@utils/interface";
+import { useCallback, useState } from "react";
 
-type mealData = {
-    time: string;
-    title: string;
-    status: MealStatusType;
-}
 type mealProps = {
     date: string;
-    data: mealData[];
+    data: IMeal[];
 }
 
 export function Meals() {
     const navigator = useNavigation();
-    const datas: mealProps[] = [
-        {
-            date: "12.08.22",
-            data: [
-                { time: "20:00", title: "X-Tudo", status: 'NEGATIVE'},
-                { time: "08:00", title: "Mingau", status: 'POSITIVE' },
-            ]
-        },
-        {
-            date: "20.08.22",
-            data: [
-                { time: "10:45", title: "Bolo", status: 'NEGATIVE' },
-                { time: "08:00", title: "Pão de queijo", status: 'NEGATIVE' },
-            ]
-        },
-        {
-            date: "30.08.22",
-            data: [
-                { time: "06:30", title: "Cereais", status: 'POSITIVE' },
-                { time: "08:00", title: "Salgadinho", status: 'NEGATIVE' },
-            ]
-        }
-    ]
+
+    const [datas, setDatas] = useState<mealProps[]>([]);
+
+    async function fetchGetAllMeals() {
+        const data = await getAllMeals();
+        const newData: mealProps[] = [];
+        data.map(item => {
+            newData.push({
+                date: item.date,
+                data: [{
+                    name: item.name,
+                    description: item.description,
+                    date: item.date,
+                    hour: item.hour,
+                    isDiet: item.isDiet
+                }]
+            });
+        });
+        setDatas(newData);
+    }
+
+    useFocusEffect(useCallback(()=> {
+        fetchGetAllMeals();
+    },[]))
 
     function goNewDiet(){
        navigator.navigate('newdiet');
@@ -55,7 +53,7 @@ export function Meals() {
             <Button
                 type="PRIMARY"
                 size="LG"
-                text="Nova refeicão"
+                text="Nova refeição"
                 icon="plus"
                 onPress={goNewDiet}
             />
@@ -63,12 +61,12 @@ export function Meals() {
             <SectionList
                 nestedScrollEnabled
                 sections={datas}
-                keyExtractor={item => item.title}
+                keyExtractor={item => item.name}
                 renderItem={({ item }) => (
                     <MealList
-                        time={item.time}
-                        title={item.title}
-                        status={item.status}
+                        time={item.hour}
+                        title={item.name}
+                        status={item.isDiet}
                     />
                 )}
                 renderSectionHeader={({ section: { date } }) => (
