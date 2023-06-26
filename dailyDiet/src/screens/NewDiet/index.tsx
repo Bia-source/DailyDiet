@@ -16,7 +16,7 @@ export function NewDiet() {
 
     const [nameMeal, setNameMeal] = useState('');
     const [descriptionMeal, setDescriptionMeal] = useState('');
-    const [isDietMeal, setIsDietMeal] = useState<boolean>(true);
+    const [isDietMeal, setIsDietMeal] = useState<boolean>(false);
 
     const maskedDate = maskDate(date, setDate);
     const maskedHours = maskHours(hours, setHours);
@@ -104,26 +104,20 @@ export function NewDiet() {
                 <Separator distance={10} />
                 <S.DivDate>
                     <Button
-                        isActive={(option === 'Yes')}
-                        type={(option === 'Yes') ? "GREEN-DARK" : "SECONDARY"}
+                        isActive={isDietMeal}
+                        type={isDietMeal ? "GREEN-DARK" : "SECONDARY"}
                         size="SM"
                         text="Sim"
-                        onPress={() => {
-                            setOption('Yes')
-                            setIsDietMeal(true)
-                        }}
+                        onPress={() => { setIsDietMeal(true) }}
                         iconPerson={<S.Status typeButtonNewDiet />}
                     />
                     <SeparatorVertical distance={20} />
                     <Button
-                        isActive={option === 'No'}
-                        type={option === 'No' ? "RED-DARK" : "SECONDARY"}
+                        isActive={!isDietMeal}
+                        type={!isDietMeal ? "RED-DARK" : "SECONDARY"}
                         size="SM"
                         text="Não"
-                        onPress={() => {
-                            setOption('No')
-                            setIsDietMeal(false)
-                        }}
+                        onPress={() => { setIsDietMeal(false) }}
                         iconPerson={<S.Status />}
                     />
                 </S.DivDate>
