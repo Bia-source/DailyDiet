@@ -18,7 +18,7 @@ export function Feedback() {
     function backHome() {
         navigator.navigate('home');
     }
-    
+
     return (
         <S.Container>
             {isDiet ?

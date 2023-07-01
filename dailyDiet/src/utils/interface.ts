@@ -8,10 +8,11 @@ export interface IMeal {
 
 export type RouteParams = {
    meal: {
-       name: string;
-       description: string;
-       date: string;
-       hour: string;
-       isDiet: boolean;
+      name: string;
+      description: string;
+      date: string;
+      hour: string;
+      isDiet: boolean;
    }
 }
+

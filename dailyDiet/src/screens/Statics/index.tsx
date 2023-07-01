@@ -1,17 +1,37 @@
 import { HeaderStatics } from "@components/HeaderStatics";
 import * as S from "./style";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { CardPercentage } from "@components/CardPercentage";
 import { Separator, SeparatorVertical } from "@components/Separator ";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { PercentageType } from "@components/CardPercentage/style";
+import { getIsDietMealStorage } from "@storage/MealStorage/getIsDietMeal";
+import { IMeal } from "@utils/interface";
+
+type DataType = {
+    isDietMeals: number,
+    isNotDietMeals: number,
+    numberAll: number
+ }
 
 export function Statics() {
     const [status, setStatus] = useState<PercentageType>('NEGATIVE');
     const navigator = useNavigation();
 
+    const [ data, setData] = useState<DataType>();
+
     function goBack() {
         navigator.goBack();
+    }
+
+    useFocusEffect(useCallback(()=> {
+        getData();
+    },[]))
+    
+    async function getData(){
+      const data = await getIsDietMealStorage();
+      console.log(data);
+      setData(data);
     }
 
     return (
@@ -27,7 +47,7 @@ export function Statics() {
                 <Separator distance={20} />
                 <S.Cards>
                     <S.TitleCard>
-                        4
+                        1
                     </S.TitleCard>
                     <S.SubTitleCard>
                         melhor sequencia de pratos dentro da dieta
@@ -37,7 +57,7 @@ export function Statics() {
 
                 <S.Cards>
                     <S.TitleCard>
-                        109
+                        {data?.numberAll}
                     </S.TitleCard>
                     <S.SubTitleCard>
                         refeições registradas
@@ -48,7 +68,7 @@ export function Statics() {
                 <S.Div>
                     <S.CardsSmall color="GREEN">
                         <S.TitleCard>
-                            32
+                           {data?.isDietMeals}
                         </S.TitleCard>
                         <S.SubTitleCard>
                             refeições dentro da dieta
@@ -59,7 +79,7 @@ export function Statics() {
 
                     <S.CardsSmall color="RED">
                         <S.TitleCard>
-                            77
+                            {data?.isNotDietMeals}
                         </S.TitleCard>
                         <S.SubTitleCard>
                             refeições fora da dieta
