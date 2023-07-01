@@ -12,7 +12,7 @@ import { IMeal } from "@utils/interface";
 import { getMealById } from "@storage/MealStorage/getMealById";
 
 type RouteParams = {
-    meal: {
+    mealDetail: {
         id: string;
         name: string;
         description: string;
@@ -26,16 +26,16 @@ export function Details() {
     const [modalVisable, setModalVisable] = useState<boolean>(false);
     const navigator = useNavigation();
     const route = useRoute();
-    const { meal } = route.params as RouteParams;
-    const { name, description, date, hour, isDiet, id } = meal;
+    const { mealDetail } = route.params as RouteParams;
+    const { name, description, date, hour, isDiet, id } = mealDetail;
     const [mealUpdate, setMealUpdate] = useState<IMeal | any>();
     
     function goEdit(){
-        navigator.navigate('editMeal', { meal });
+        navigator.navigate('editMeal', { meal: mealDetail });
     }
     
     async function deleteMealTrash(){
-        await deleteMeal(meal.name);
+        await deleteMeal(mealUpdate?.id);
         setModalVisable(false);
         navigator.navigate('home');
     }
@@ -50,7 +50,7 @@ export function Details() {
 
     return (
         <>
-            <S.Container type={isDiet}>
+            <S.Container type={mealUpdate?.isDiet || isDiet}>
                 <S.Div>
                     <ButtonBack type="NEUTRAL" />
                     <S.Title>
@@ -85,8 +85,8 @@ export function Details() {
                 <Separator distance={25} />
 
                 <S.MealIsDietView>
-                    <S.Status type={isDiet} />
-                    {isDiet ?
+                    <S.Status type={mealUpdate?.isDiet || isDiet} />
+                    {mealUpdate?.isDiet || isDiet ?
                         <S.MealIsDietText> dentro da dieta</S.MealIsDietText>
                         :
                         <S.MealIsDietText> fora da dieta </S.MealIsDietText>
