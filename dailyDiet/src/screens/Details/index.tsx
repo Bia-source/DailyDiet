@@ -25,6 +25,9 @@ export function Details() {
     const { meal } = route.params as RouteParams;
     const { name, description, date, hour, isDiet } = meal;
 
+    function goEdit(){
+        navigator.navigate('editMeal', { meal });
+    }
     return (
         <>
             <S.Container type={isDiet}>
@@ -76,7 +79,7 @@ export function Details() {
                     size='LG'
                     iconPerson={<S.IconEdit source={pencil} />}
                     text='Editar refeição'
-                    onPress={() => { }}
+                    onPress={() => goEdit()}
                 />
 
                 <Separator distance={10} />

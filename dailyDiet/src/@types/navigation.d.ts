@@ -14,7 +14,7 @@ export declare global {
             };
             editMeal: {
                 meal: IMeal
-            }
+            };
         }
     }
 }
