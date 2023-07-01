@@ -99,6 +99,9 @@ export const Status = styled.View<DetailsStyleProps>`
   background-color: ${({ theme, type }) => type && theme.COLORS.GREEN_DARK || !type && theme.COLORS.RED_DARK};
 `
 
-export const IconEdit = styled.Image`
+export const IconEdit = styled.Image``;
+
+export const MealModalDelete = styled.View`
   
 `
+

@@ -12,6 +12,9 @@ export declare global {
             details: {
                 meal: IMeal
             };
+            editMeal: {
+                meal: IMeal
+            }
         }
     }
 }

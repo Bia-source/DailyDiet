@@ -1,11 +1,12 @@
 import { ButtonBack } from "@components/ButtonBack";
 import * as S from "./style";
 import { useFocusEffect, useNavigation, useRoute } from "@react-navigation/native";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { Separator } from "@components/Separator ";
 import { Button } from "@components/Button";
 import pencil from "@assets/pencil.png";
 import trash from "@assets/trash.png";
+import { ModalContent } from "@components/ModalContent";
 
 type RouteParams = {
     meal: {
@@ -18,6 +19,7 @@ type RouteParams = {
 }
 
 export function Details() {
+    const [modalVisable, setModalVisable] = useState<boolean>(false);
     const navigator = useNavigation();
     const route = useRoute();
     const { meal } = route.params as RouteParams;
@@ -73,7 +75,7 @@ export function Details() {
                     type='PRIMARY'
                     size='LG'
                     iconPerson={<S.IconEdit source={pencil} />}
-                    text='Ir para a pagina inicial'
+                    text='Editar refeição'
                     onPress={() => { }}
                 />
 
@@ -83,8 +85,13 @@ export function Details() {
                     size='LG'
                     iconPerson={<S.IconEdit source={trash} />}
                     text='Excluir refeição'
-                    onPress={() => { }}
+                    onPress={()=> setModalVisable(true)}
                 />
+
+                {modalVisable &&
+                    <ModalContent visable={modalVisable} closed={()=> setModalVisable(false)}/>
+                }
+                
             </S.Container2>
         </>
     )
