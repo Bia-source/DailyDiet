@@ -5,7 +5,7 @@ import { TouchableOpacityProps } from "react-native";
 type ButtonComponentProps = TouchableOpacityProps & {
     type: S.ButtonColorStyleProps;
     size: S.ButtonSizeStyleProps;
-    icon?: keyof typeof AntDesign.glyphMap;
+    icon?: keyof typeof AntDesign.glyphMap | any;
     text: string;
     iconPerson?: any;
     isActive?: boolean;

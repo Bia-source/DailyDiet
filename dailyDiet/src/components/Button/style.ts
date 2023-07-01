@@ -3,7 +3,7 @@ import { TouchableOpacity, Text } from "react-native";
 import styled from "styled-components/native";
 import { AntDesign } from "@expo/vector-icons";
 
-export type ButtonColorStyleProps = 'PRIMARY' | 'SECONDARY' | 'GREEN-DARK' | 'RED-DARK';
+export type ButtonColorStyleProps = 'PRIMARY' | 'SECONDARY' | 'GREEN-DARK' | 'RED-DARK' | 'WHITE';
 export type ButtonSizeStyleProps = 'SM' | 'MD' | 'LG';
 export type ButtonColorTextProps = 'DARK' | 'LIGTH';
 
@@ -21,6 +21,7 @@ export const Container = styled(TouchableOpacity) <Props>`
       : type === 'SECONDARY' ? theme.COLORS.GRAY_600
         : type === 'GREEN-DARK' && isActive ? theme.COLORS.GREEN_LIGHT
         : type === 'RED-DARK' && isActive ? theme.COLORS.RED_LIGHT
+        : type === 'WHITE' ? theme.COLORS.WHITE 
         : theme.COLORS.GRAY_200};
   min-width: ${({ size }) =>
     size === 'SM' ? 47

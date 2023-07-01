@@ -52,5 +52,4 @@ export const Status = styled.View<MealsListProps>`
   height:14px;
   border-radius:20px;
   background-color: ${({ theme, type }) => type && theme.COLORS.GREEN_MID || !type && theme.COLORS.RED_LIGHT};
-  
 `

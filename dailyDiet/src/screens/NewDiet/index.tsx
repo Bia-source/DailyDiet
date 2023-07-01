@@ -9,7 +9,6 @@ import { IMeal } from "@utils/interface";
 import { newMeal } from "@storage/MealStorage/newMeal";
 
 export function NewDiet() {
-    const [option, setOption] = useState('');
     const navigator = useNavigation();
     const [date, setDate] = useState('');
     const [hours, setHours] = useState('');

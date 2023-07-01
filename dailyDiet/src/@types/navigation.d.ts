@@ -1,3 +1,5 @@
+import { IMeal } from "@utils/interface";
+
 export declare global {
     namespace ReactNavigation {
         interface RootParamList {
@@ -6,6 +8,9 @@ export declare global {
             newdiet: undefined;
             feedback: {
                 isDiet: boolean
+            };
+            details: {
+                meal: IMeal
             };
         }
     }

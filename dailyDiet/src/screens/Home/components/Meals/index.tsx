@@ -6,12 +6,24 @@ import * as S from "./style";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { getAllMeals } from "@storage/MealStorage/getAllMeals";
 import { IMeal } from "@utils/interface";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { deleteMeal } from "@storage/MealStorage/deleteMeal";
 
 type mealProps = {
     date: string;
     data: IMeal[];
 }
+
+
+// date: item.date,
+//                 data: [{
+//                     name: item.name,
+//                     description: item.description,
+//                     date: item.date,
+//                     hour: item.hour,
+//                     isDiet: item.isDiet
+//                 }]
+
 
 export function Meals() {
     const navigator = useNavigation();
@@ -36,12 +48,17 @@ export function Meals() {
         setDatas(newData);
     }
 
-    useFocusEffect(useCallback(()=> {
+    useFocusEffect(useCallback(() => {
         fetchGetAllMeals();
-    },[]))
+    }, []))
 
-    function goNewDiet(){
-       navigator.navigate('newdiet');
+    function goNewDiet() {
+        navigator.navigate('newdiet');
+    }
+
+    function goDetailsMeal(meal: IMeal){
+        console.log(meal);
+        navigator.navigate('details', { meal });
     }
 
     return (
@@ -67,18 +84,21 @@ export function Meals() {
                         time={item.hour}
                         title={item.name}
                         status={item.isDiet}
+                        onPress={()=> goDetailsMeal(item)}
                     />
                 )}
                 renderSectionHeader={({ section: { date } }) => (
                     <>
-                        <Separator distance={10}/>
+                        <Separator distance={10} />
                         <S.Date>
                             {date}
                         </S.Date>
                     </>
                 )}
                 showsVerticalScrollIndicator={false}
-                
+                ListEmptyComponent={(
+                    <></>
+                )}
             />
 
         </S.Container>

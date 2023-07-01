@@ -3,6 +3,7 @@ import { Home } from '@screens/Home';
 import { NewDiet } from '@screens/NewDiet';
 import { Statics } from '@screens/Statics';
 import { Feedback } from '@screens/Feedback';
+import { Details } from '@screens/Details';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -24,6 +25,10 @@ export function AppRoutes() {
             <Screen 
               name='feedback'
               component={Feedback}
+            />
+            <Screen
+            name='details'
+            component={Details}
             />
         </Navigator>
     )

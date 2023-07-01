@@ -31,6 +31,7 @@ export default {
       XSM: 14,
       MD: 16,
       XMD: 18,
+      XXMD: 20,
       LG: 24,
       XLG: 32
     }
