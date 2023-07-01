@@ -4,7 +4,7 @@ type PropsPercentage = {
     percentage?: string;
 }
 
-export function Percentage({percentage}: PropsPercentage){
+export function Percentage({percentage="0"}: PropsPercentage){
     
     return(
         <S.Container>

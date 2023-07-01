@@ -1,4 +1,5 @@
 export interface IMeal {
+   id: string;
    name: string;
    description: string;
    date: string;
@@ -8,6 +9,7 @@ export interface IMeal {
 
 export type RouteParams = {
    meal: {
+      id: string;
       name: string;
       description: string;
       date: string;

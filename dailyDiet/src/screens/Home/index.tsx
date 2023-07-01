@@ -5,16 +5,16 @@ import { CardPercentage } from "@components/CardPercentage";
 import { Separator } from "@components/Separator ";
 import { Meals } from "./components/Meals";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import { PercentageType } from "@components/CardPercentage/style";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
 import { getAllMeals } from "@storage/MealStorage/getAllMeals";
+import { deleteMeal } from "@storage/MealStorage/deleteMeal";
 
 export function Home() {
     const navigator = useNavigation();
-    const [status, setStatus] = useState<PercentageType>('NEGATIVE');
-
+    
     useFocusEffect(useCallback(()=> {
          getAllMeals();
+         //deleteMeal("")
     }, []))
 
 

@@ -8,9 +8,12 @@ import pencil from "@assets/pencil.png";
 import trash from "@assets/trash.png";
 import { ModalContent } from "@components/ModalContent";
 import { deleteMeal } from "@storage/MealStorage/deleteMeal";
+import { IMeal } from "@utils/interface";
+import { getMealById } from "@storage/MealStorage/getMealById";
 
 type RouteParams = {
     meal: {
+        id: string;
         name: string;
         description: string;
         date: string;
@@ -24,16 +27,26 @@ export function Details() {
     const navigator = useNavigation();
     const route = useRoute();
     const { meal } = route.params as RouteParams;
-    const { name, description, date, hour, isDiet } = meal;
-
+    const { name, description, date, hour, isDiet, id } = meal;
+    const [mealUpdate, setMealUpdate] = useState<IMeal | any>();
+    
     function goEdit(){
         navigator.navigate('editMeal', { meal });
     }
+    
     async function deleteMealTrash(){
-        await deleteMeal(name);
+        await deleteMeal(meal.name);
         setModalVisable(false);
         navigator.navigate('home');
     }
+
+    async function getMeal(){
+       const getMeal = await getMealById(id);
+       setMealUpdate(getMeal)
+    }
+    useFocusEffect(useCallback(()=> {
+       getMeal();
+    }, []))
 
     return (
         <>
@@ -48,13 +61,13 @@ export function Details() {
 
             <S.Container2>
                 <S.MealName>
-                    {name}
+                    {mealUpdate?.name || name}
                 </S.MealName>
 
                 <Separator distance={5} />
 
                 <S.MealDescription>
-                    {description}
+                    {mealUpdate?.description || description}
                 </S.MealDescription>
 
                 <Separator distance={25} />
@@ -66,7 +79,7 @@ export function Details() {
                 <Separator distance={5} />
 
                 <S.MealDate>
-                    {date} às {hour}
+                    {mealUpdate?.date || date} às {mealUpdate?.hour || hour}
                 </S.MealDate>
 
                 <Separator distance={25} />

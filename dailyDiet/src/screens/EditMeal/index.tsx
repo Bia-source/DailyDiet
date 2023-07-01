@@ -7,13 +7,14 @@ import { useEffect, useState } from "react";
 import { maskDate, maskHours } from "@utils/masks";
 import { Separator, SeparatorVertical } from "@components/Separator ";
 import { Button } from "@components/Button";
+import { updateMealStorage } from "@storage/MealStorage/updateMeal";
 
 export function EditMeal() {
 
     const navigator = useNavigation();
     const route = useRoute();
     const { meal } = route.params as RouteParams;
-    const { name, description, date, hour, isDiet } = meal;
+    const { name, description, date, hour, isDiet, id } = meal;
 
     const [dateUpdate, setDateUpdate] = useState('');
     const [hours, setHours] = useState('');
@@ -26,15 +27,19 @@ export function EditMeal() {
     const maskedHours = maskHours(hour, setHours);
 
     useEffect(()=> {
-       setIsDietMeal(isDiet);
-       setNameMeal(name);
-       setDescriptionMeal(description);
-       setHours(hour);
-       setDateUpdate(date);
+       autocomplete()
     },[]);
+
+    function autocomplete(){
+        setIsDietMeal(isDiet);
+        setNameMeal(name);
+        setDescriptionMeal(description);
+        setHours(hour);
+        setDateUpdate(date);
+    }
     
-    async function SaveEdit(){
-        // TODO ASYNC STORAGE
+    async function saveEdit(){
+        await updateMealStorage({id: id, name: nameMeal, description: descriptionMeal, isDiet: isDietMeal, hour: hours, date: dateUpdate});
         navigator.goBack();
     }
 
@@ -58,7 +63,7 @@ export function EditMeal() {
                     onSubmitEditing={() => { setNameMeal }}
                     returnKeyType="default"
                     typeInput="NAME"
-                    value={name}
+                    value={nameMeal}
                     onChangeText={setNameMeal}
                 />
                 <Separator distance={20} />
@@ -71,7 +76,7 @@ export function EditMeal() {
                     onSubmitEditing={() => { setDescriptionMeal }}
                     returnKeyType="default"
                     typeInput="DESCRIPTION"
-                    value={description}
+                    value={descriptionMeal}
                     onChangeText={setDescriptionMeal}
                 />
 
@@ -134,7 +139,7 @@ export function EditMeal() {
                     type="PRIMARY"
                     size="LG"
                     text="Salvar alterações"
-                    onPress={() => SaveEdit()}
+                    onPress={() => saveEdit()}
                 />
 
             </S.Container2>

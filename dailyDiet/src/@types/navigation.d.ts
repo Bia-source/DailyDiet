@@ -10,7 +10,7 @@ export declare global {
                 isDiet: boolean
             };
             details: {
-                meal: IMeal
+                mealDetail: IMeal
             };
             editMeal: {
                 meal: IMeal

@@ -1,5 +1,6 @@
 import { ButtonBack } from "@components/ButtonBack";
 import * as S from "./style";
+import { stringify, v4 as uuidv4 } from 'uuid';
 import { Separator, SeparatorVertical } from "@components/Separator ";
 import { Button } from "@components/Button";
 import { useEffect, useState } from "react";
@@ -21,7 +22,9 @@ export function NewDiet() {
     const maskedHours = maskHours(hours, setHours);
 
     async function regiterStorage() {
+        const newId = Math.random() * 21;
         await newMeal({
+            id: newId.toString(),
             name: nameMeal, 
             description: descriptionMeal,
             date: date,

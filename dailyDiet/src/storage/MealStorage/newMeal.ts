@@ -2,16 +2,15 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { IMeal } from "@utils/interface";
 import { getAllMeals } from "./getAllMeals";
 import { MEAL_COLLECTION } from "@storage/storageConfig";
-import { deleteMeal } from "./deleteMeal";
 
 export async function newMeal(meal: IMeal) {
-     try {
+   try {
       const storageMeals = await getAllMeals();
-        const storage = JSON.stringify([...storageMeals, meal]);
+      const storage = JSON.stringify([...storageMeals, meal]);
 
-        await AsyncStorage.setItem(MEAL_COLLECTION, storage);
-      
-     } catch (error) {
-        throw error;
-     }
+      await AsyncStorage.setItem(MEAL_COLLECTION, storage);
+
+   } catch (error) {
+      throw error;
+   }
 }

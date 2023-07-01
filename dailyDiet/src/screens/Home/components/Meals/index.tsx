@@ -14,17 +14,6 @@ type mealProps = {
     data: IMeal[];
 }
 
-
-// date: item.date,
-//                 data: [{
-//                     name: item.name,
-//                     description: item.description,
-//                     date: item.date,
-//                     hour: item.hour,
-//                     isDiet: item.isDiet
-//                 }]
-
-
 export function Meals() {
     const navigator = useNavigation();
 
@@ -37,6 +26,7 @@ export function Meals() {
             newData.push({
                 date: item.date,
                 data: [{
+                    id: item.id,
                     name: item.name,
                     description: item.description,
                     date: item.date,
@@ -57,7 +47,7 @@ export function Meals() {
     }
 
     function goDetailsMeal(meal: IMeal){
-        navigator.navigate('details', { meal });
+        navigator.navigate('details', { mealDetail: meal });
     }
 
     return (
@@ -77,7 +67,7 @@ export function Meals() {
             <SectionList
                 nestedScrollEnabled
                 sections={datas}
-                keyExtractor={item => item.name}
+                keyExtractor={item => item.id}
                 renderItem={({ item }) => (
                     <MealList
                         time={item.hour}
