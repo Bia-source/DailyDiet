@@ -4,22 +4,26 @@ import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { CardPercentage } from "@components/CardPercentage";
 import { Separator, SeparatorVertical } from "@components/Separator ";
 import { useCallback, useState } from "react";
-import { PercentageType } from "@components/CardPercentage/style";
 import { getIsDietMealStorage } from "@storage/MealStorage/getIsDietMeal";
-import { IMeal } from "@utils/interface";
+import { getPercentage } from "@storage/MealStorage/getPercentage";
 
 type DataType = {
     isDietMeals: number,
     isNotDietMeals: number,
     numberAll: number
  }
+type PercentageProps = {
+    isDiet: boolean; 
+    percentage: number;
+} 
 
 export function Statics() {
-    const [status, setStatus] = useState<PercentageType>('NEGATIVE');
+    const [isDiet, setIsDiet] = useState<boolean>(false);
+
     const navigator = useNavigation();
 
     const [ data, setData] = useState<DataType>();
-
+   
     function goBack() {
         navigator.goBack();
     }
@@ -30,15 +34,16 @@ export function Statics() {
     
     async function getData(){
       const data = await getIsDietMealStorage();
-      console.log(data);
+      const{ isDiet } = await getPercentage()
       setData(data);
+      setIsDiet(isDiet);
     }
 
     return (
-        <S.HeaderContainer color="NEGATIVE">
+        <S.HeaderContainer isDiet={isDiet}>
             <S.Container>
-                <HeaderStatics onPress={goBack} type={status} />
-                <CardPercentage type={status} />
+                <HeaderStatics onPress={goBack} type={isDiet ? 'POSITIVE' : !isDiet ? 'NEGATIVE' : 'NEUTRAL'} />
+                <CardPercentage isDiet={isDiet} />
 
             </S.Container>
 

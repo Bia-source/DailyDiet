@@ -4,7 +4,7 @@ import { Feather } from "@expo/vector-icons"
 
 export type PercentageType = 'POSITIVE' | 'NEGATIVE';
 export type PercentageStyleProps = {
-    type?: PercentageType;
+    isDiet?: boolean;
 }
 
 export const Container = styled(TouchableOpacity)<PercentageStyleProps>`
@@ -14,12 +14,12 @@ export const Container = styled(TouchableOpacity)<PercentageStyleProps>`
    height: 104px;
    padding: 20px 16px 20px 16px;
    border-radius: 8px;
-   background-color: ${({ theme, type })=> type === 'POSITIVE' && theme.COLORS.GREEN_LIGHT || type === 'NEGATIVE' && theme.COLORS.RED_LIGHT};
+   background-color: ${({ theme, isDiet })=> isDiet && theme.COLORS.GREEN_LIGHT || !isDiet && theme.COLORS.RED_LIGHT};
 `;
 
-export const Icon = styled(Feather).attrs<PercentageStyleProps>(({ theme, type })=> ({
+export const Icon = styled(Feather).attrs<PercentageStyleProps>(({ theme, isDiet })=> ({
     size: 24,
-    color: type === 'NEGATIVE' && theme.COLORS.RED_DARK || type === 'POSITIVE' && theme.COLORS.GREEN_DARK
+    color: !isDiet && theme.COLORS.RED_DARK || isDiet && theme.COLORS.GREEN_DARK
 }))`
     width: 24px;
     height: 24px; 

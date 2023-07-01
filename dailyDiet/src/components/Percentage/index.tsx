@@ -1,10 +1,15 @@
 import * as S from "./style";
 
-export function Percentage(){
+type PropsPercentage = {
+    percentage?: string;
+}
+
+export function Percentage({percentage}: PropsPercentage){
+    
     return(
         <S.Container>
             <S.Title>
-               30,21%
+               {percentage}%
             </S.Title>
   
             <S.SubTitle>

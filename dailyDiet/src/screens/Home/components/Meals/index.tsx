@@ -57,7 +57,6 @@ export function Meals() {
     }
 
     function goDetailsMeal(meal: IMeal){
-        console.log(meal);
         navigator.navigate('details', { meal });
     }
 

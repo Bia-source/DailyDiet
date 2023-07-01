@@ -2,7 +2,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 
 type StaticsStyleProps = {
- color: string;
+ color?: string;
+ isDiet?: boolean;
 }
 
 export const Container = styled(SafeAreaView)`
@@ -11,7 +12,7 @@ export const Container = styled(SafeAreaView)`
 
 export const HeaderContainer = styled.View<StaticsStyleProps>`
     flex: 1;
-    background-color: ${({ theme, color })=> color === 'POSITIVE' && theme.COLORS.GREEN_LIGHT || color === 'NEGATIVE' && theme.COLORS.RED_LIGHT};
+    background-color: ${({ theme, isDiet })=> isDiet && theme.COLORS.GREEN_LIGHT || !isDiet && theme.COLORS.RED_LIGHT};
 `
 
 export const GeneralStatistics = styled(SafeAreaView)`

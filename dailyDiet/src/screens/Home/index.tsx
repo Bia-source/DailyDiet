@@ -23,9 +23,9 @@ export function Home() {
     }
     return (
         <S.Container>
-            <Header />
+            <Header /> 
             <Separator distance={33} />
-            <CardPercentage showIconBack={true} onPress={goStatics} type={status} />
+            <CardPercentage showIconBack={true} onPress={goStatics}/>
             <Separator distance={40} />
             <Meals/>
         </S.Container>
