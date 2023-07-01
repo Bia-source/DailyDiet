@@ -1,16 +1,16 @@
 import { useState } from "react";
-import { Modal } from "react-native";
+import { Modal, TouchableOpacityProps } from "react-native";
 import * as S from "./style";
 import { Button } from "@components/Button";
 import { Separator, SeparatorVertical } from "@components/Separator ";
 
 
-type ModalProps = {
+type ModalProps  = TouchableOpacityProps & {
   visable: boolean;  
   closed: (statusVisable: boolean)=> void;
 }
 
-export function ModalContent({visable, closed}: ModalProps) {
+export function ModalContent({visable, closed, ...rest}: ModalProps) {
     return (
         <Modal
             animationType="fade"
@@ -22,6 +22,7 @@ export function ModalContent({visable, closed}: ModalProps) {
                     <S.Title> Deseja realmente excluir o registro da refeição? </S.Title>
                     <Separator distance={30}/>
                     <S.ModalAction>
+                       
                         <Button
                             type='WHITE'
                             size='SM'
@@ -33,7 +34,7 @@ export function ModalContent({visable, closed}: ModalProps) {
                             type='PRIMARY'
                             size='SM'
                             text='Sim, excluir'
-                            onPress={() => { }}
+                            {...rest}
                         />
                     </S.ModalAction>
                 </S.ModalView>

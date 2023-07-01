@@ -7,6 +7,7 @@ import { Button } from "@components/Button";
 import pencil from "@assets/pencil.png";
 import trash from "@assets/trash.png";
 import { ModalContent } from "@components/ModalContent";
+import { deleteMeal } from "@storage/MealStorage/deleteMeal";
 
 type RouteParams = {
     meal: {
@@ -28,6 +29,12 @@ export function Details() {
     function goEdit(){
         navigator.navigate('editMeal', { meal });
     }
+    async function deleteMealTrash(){
+        await deleteMeal(name);
+        setModalVisable(false);
+        navigator.navigate('home');
+    }
+
     return (
         <>
             <S.Container type={isDiet}>
@@ -92,7 +99,7 @@ export function Details() {
                 />
 
                 {modalVisable &&
-                    <ModalContent visable={modalVisable} closed={()=> setModalVisable(false)}/>
+                    <ModalContent visable={modalVisable} onPress={deleteMealTrash} closed={()=> setModalVisable(false)}/>
                 }
                 
             </S.Container2>
